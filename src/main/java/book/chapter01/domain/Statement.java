@@ -21,10 +21,6 @@ public class Statement {
         int volumeCredits = 0;
         String result = String.format("청구 내역 (고객명: %s)\n", invoice.getCustomer());
 
-        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("en-US"));
-        format.setCurrency(Currency.getInstance("USD"));
-        format.setMinimumFractionDigits(2);
-
         for (Invoice.Performance perf : invoice.getPerformances()) {
             volumeCredits += volumeCreditsFor(perf);
 
@@ -32,13 +28,21 @@ public class Statement {
             result +=
                     String.format(
                             "%15s:%12s%4s석\n",
-                            playFor(perf).getName(), format.format(amountFor(perf) / 100), perf.getAudience());
+                            playFor(perf).getName(), format(amountFor(perf)), perf.getAudience());
             totalAmount += amountFor(perf);
         }
 
-        result += String.format("총액: %s\n", format.format(totalAmount / 100));
+        result += String.format("총액: %s\n", format(totalAmount));
         result += String.format("적립 포인트: %s점\n", volumeCredits);
         return result;
+    }
+
+    private String format(long amount) {
+        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("en-US"));
+        format.setCurrency(Currency.getInstance("USD"));
+        format.setMinimumFractionDigits(2);
+
+        return format.format(amount / 100);
     }
 
     private int volumeCreditsFor(Invoice.Performance performance) {

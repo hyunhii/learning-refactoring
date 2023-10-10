@@ -61,22 +61,22 @@ public class Chapter01Application {
     return result;
   }
 
-  private static int amountFor(Performance perf, Play play) throws Exception {
+  private static int amountFor(Performance performance, Play play) throws Exception {
     int result = 0;
 
     switch (play.getType()) {
       case "tragedy":
         result = 40000;
-        if (perf.getAudience() > 30) {
-          result += 1000 * (perf.getAudience() - 30);
+        if (performance.getAudience() > 30) {
+          result += 1000 * (performance.getAudience() - 30);
         }
         break;
       case "comedy":
         result = 30000;
-        if (perf.getAudience() > 20) {
-          result += 10000 + 500 * (perf.getAudience() - 20);
+        if (performance.getAudience() > 20) {
+          result += 10000 + 500 * (performance.getAudience() - 20);
         }
-        result += 300 * perf.getAudience();
+        result += 300 * performance.getAudience();
         break;
       default:
         throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));

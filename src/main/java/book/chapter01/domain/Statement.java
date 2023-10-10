@@ -26,6 +26,9 @@ public class Statement {
                     String.format(
                             "%15s:%12s%4s석\n",
                             playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience());
+        }
+
+        for (Invoice.Performance perf : invoice.getPerformances()) {
             totalAmount += amountFor(perf);
         }
 

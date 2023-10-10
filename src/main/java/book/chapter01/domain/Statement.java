@@ -27,9 +27,7 @@ public class Statement {
                             playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience());
         }
 
-        int totalAmount = totalAmount();
-
-        result += String.format("총액: %s\n", usd(totalAmount));
+        result += String.format("총액: %s\n", usd(totalAmount()));
         result += String.format("적립 포인트: %s점\n", totalVolumeCredits());
         return result;
     }

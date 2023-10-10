@@ -28,16 +28,16 @@ public class Statement {
             result +=
                     String.format(
                             "%15s:%12s%4s석\n",
-                            playFor(perf).getName(), format(amountFor(perf)), perf.getAudience());
+                            playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience());
             totalAmount += amountFor(perf);
         }
 
-        result += String.format("총액: %s\n", format(totalAmount));
+        result += String.format("총액: %s\n", usd(totalAmount));
         result += String.format("적립 포인트: %s점\n", volumeCredits);
         return result;
     }
 
-    private String format(long amount) {
+    private String usd(long amount) {
         NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("en-US"));
         format.setCurrency(Currency.getInstance("USD"));
         format.setMinimumFractionDigits(2);

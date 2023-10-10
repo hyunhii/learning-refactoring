@@ -26,7 +26,7 @@ public class Statement {
         format.setMinimumFractionDigits(2);
 
         for (Invoice.Performance perf : invoice.getPerformances()) {
-            int thisAmount = amountFor(perf, playFor(perf));
+            int thisAmount = amountFor(perf);
             // 포인트 적립
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
 
@@ -55,10 +55,10 @@ public class Statement {
                 .get();
     }
 
-    private int amountFor(Invoice.Performance performance, Play play) throws Exception {
+    private int amountFor(Invoice.Performance performance) throws Exception {
         int result = 0;
 
-        switch (play.getType()) {
+        switch (playFor(performance).getType()) {
             case "tragedy":
                 result = 40000;
                 if (performance.getAudience() > 30) {
@@ -73,7 +73,7 @@ public class Statement {
                 result += 300 * performance.getAudience();
                 break;
             default:
-                throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
+                throw new Exception(String.format("알 수 없는 장르: %s", playFor(performance).getType()));
         }
         return result;
     }

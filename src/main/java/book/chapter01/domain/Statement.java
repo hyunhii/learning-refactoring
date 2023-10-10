@@ -26,12 +26,12 @@ public class Statement {
         format.setMinimumFractionDigits(2);
 
         for (Invoice.Performance perf : invoice.getPerformances()) {
-            int thisAmount = amountFor(perf, playFor(plays, perf));
+            int thisAmount = amountFor(perf, playFor(perf));
             // 포인트 적립
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
 
             // 희극 관객 5명마다 추가 포인트 제공
-            if (playFor(plays, perf).getType().equals("comedy")) {
+            if (playFor(perf).getType().equals("comedy")) {
                 volumeCredits += Math.floor(perf.getAudience() / 5);
             }
 
@@ -39,7 +39,7 @@ public class Statement {
             result +=
                     String.format(
                             "%15s:%12s%4s석\n",
-                            playFor(plays, perf).getName(), format.format(thisAmount / 100), perf.getAudience());
+                            playFor(perf).getName(), format.format(thisAmount / 100), perf.getAudience());
             totalAmount += thisAmount;
         }
 
@@ -48,7 +48,7 @@ public class Statement {
         return result;
     }
 
-    private Play playFor(Play[] plays, Invoice.Performance perf) {
+    private Play playFor(Invoice.Performance perf) {
         return Arrays.stream(plays)
                 .filter(p -> p.getPlayId().equals(perf.getPlayId()))
                 .findFirst()

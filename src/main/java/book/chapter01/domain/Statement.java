@@ -18,7 +18,6 @@ public class Statement {
 
     public String readPlainText() throws Exception {
         int totalAmount = 0;
-        int volumeCredits = 0;
         String result = String.format("청구 내역 (고객명: %s)\n", invoice.getCustomer());
 
         for (Invoice.Performance perf : invoice.getPerformances()) {
@@ -30,6 +29,7 @@ public class Statement {
             totalAmount += amountFor(perf);
         }
 
+        int volumeCredits = 0;
         for (Invoice.Performance perf : invoice.getPerformances()) {
             volumeCredits += volumeCreditsFor(perf);
         }

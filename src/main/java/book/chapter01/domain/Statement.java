@@ -1,6 +1,7 @@
 package book.chapter01.domain;
 
 import book.chapter01.dto.Invoice;
+import book.chapter01.dto.Performance;
 import book.chapter01.dto.Play;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class Statement {
     public String readPlainText() throws Exception {
         String result = String.format("청구 내역 (고객명: %s)\n", invoice.getCustomer());
 
-        for (Invoice.Performance perf : invoice.getPerformances()) {
+        for (Performance perf : invoice.getPerformances()) {
             // 청구 내역 출력
             result +=
                     String.format(
@@ -34,7 +35,7 @@ public class Statement {
 
     private int totalAmount() throws Exception {
         int totalAmount = 0;
-        for (Invoice.Performance perf : invoice.getPerformances()) {
+        for (Performance perf : invoice.getPerformances()) {
             totalAmount += amountFor(perf);
         }
         return totalAmount;
@@ -42,7 +43,7 @@ public class Statement {
 
     private int totalVolumeCredits() {
         int volumeCredits = 0;
-        for (Invoice.Performance perf : invoice.getPerformances()) {
+        for (Performance perf : invoice.getPerformances()) {
             volumeCredits += volumeCreditsFor(perf);
         }
         return volumeCredits;
@@ -56,7 +57,7 @@ public class Statement {
         return format.format(amount / 100);
     }
 
-    private int volumeCreditsFor(Invoice.Performance performance) {
+    private int volumeCreditsFor(Performance performance) {
         // 포인트 적립
         int result = 0;
         result += Math.max(performance.getAudience() - 30, 0);
@@ -68,14 +69,14 @@ public class Statement {
         return result;
     }
 
-    private Play playFor(Invoice.Performance perf) {
+    private Play playFor(Performance perf) {
         return Arrays.stream(plays)
                 .filter(p -> p.getPlayId().equals(perf.getPlayId()))
                 .findFirst()
                 .get();
     }
 
-    private int amountFor(Invoice.Performance performance) throws Exception {
+    private int amountFor(Performance performance) throws Exception {
         int result = 0;
 
         switch (playFor(performance).getType()) {

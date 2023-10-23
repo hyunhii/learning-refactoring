@@ -38,7 +38,8 @@ public class StatementData {
     }
 
     private int volumeCreditsFor(Performance performance) {
-        return new PerformanceCalculator(performance, playFor(performance)).getVolumeCredits();
+        PerformanceCalculatorFactory performanceCalculatorFactory = new PerformanceCalculatorFactory();
+        return performanceCalculatorFactory.createPerformanceCalculator(performance, playFor(performance)).getVolumeCredits();
     }
 
     public Play playFor(Performance perf) {
@@ -49,6 +50,7 @@ public class StatementData {
     }
 
     public int amountFor(Performance performance) throws Exception {
-        return new PerformanceCalculator(performance, playFor(performance)).getAmount();
+        PerformanceCalculatorFactory performanceCalculatorFactory = new PerformanceCalculatorFactory();
+        return performanceCalculatorFactory.createPerformanceCalculator(performance, playFor(performance)).getAmount();
     }
 }

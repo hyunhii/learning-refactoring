@@ -38,15 +38,7 @@ public class StatementData {
     }
 
     private int volumeCreditsFor(Performance performance) {
-        // 포인트 적립
-        int result = 0;
-        result += Math.max(performance.getAudience() - 30, 0);
-
-        // 희극 관객 5명마다 추가 포인트 제공
-        if (playFor(performance).getType().equals("comedy")) {
-            result += Math.floor(performance.getAudience() / 5);
-        }
-        return result;
+        return new PerformanceCalculator(performance, playFor(performance)).getVolumeCredits();
     }
 
     public Play playFor(Performance perf) {

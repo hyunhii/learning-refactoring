@@ -12,6 +12,7 @@ public class StatementData {
 
     private final Invoice invoice;
     private final Play[] plays;
+    private final PerformanceCalculatorFactory performanceCalculatorFactory = new PerformanceCalculatorFactory();
 
     public String getCustomer() {
         return invoice.getCustomer();
@@ -38,7 +39,6 @@ public class StatementData {
     }
 
     private int volumeCreditsFor(Performance performance) {
-        PerformanceCalculatorFactory performanceCalculatorFactory = new PerformanceCalculatorFactory();
         return performanceCalculatorFactory.createPerformanceCalculator(performance, playFor(performance)).getVolumeCredits();
     }
 
@@ -50,7 +50,6 @@ public class StatementData {
     }
 
     public int amountFor(Performance performance) throws Exception {
-        PerformanceCalculatorFactory performanceCalculatorFactory = new PerformanceCalculatorFactory();
         return performanceCalculatorFactory.createPerformanceCalculator(performance, playFor(performance)).getAmount();
     }
 }

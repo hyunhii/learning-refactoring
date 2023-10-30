@@ -8,20 +8,20 @@ public class TestApplication {
 }
 
 class Data {
-    private String name;
+    private String title;
     private String country;
 
-    public Data(String name, String country) {
-        this.name = name;
+    public Data(String title, String country) {
+        this.title = title;
         this.country = country;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getCountry() {
@@ -38,7 +38,7 @@ class Organization {
     private String country;
 
     public Organization(Data data) {
-        this.name = data.getName();
+        this.name = data.getTitle();
         this.country = data.getCountry();
     }
 

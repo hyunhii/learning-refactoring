@@ -34,20 +34,20 @@ class Data {
 }
 
 class Organization {
-    private String name;
+    private String title;
     private String country;
 
     public Organization(Data data) {
-        this.name = data.getTitle();
+        this.title = data.getTitle();
         this.country = data.getCountry();
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getCountry() {

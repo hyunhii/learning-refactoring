@@ -9,6 +9,16 @@ import java.util.List;
 
 public class Application6_5 {
     public static void main(String[] args) {
+        List<Customer> someCustomers = createCustomers();
+
+        long numberOfNewEngland =
+                someCustomers.stream()
+                        .filter(customer -> isNewEngland(customer.getAddress().getState()))
+                        .count();
+        System.out.println("numberOfNewEngland = " + numberOfNewEngland);
+    }
+
+    private static List<Customer> createCustomers() {
         List<Customer> someCustomers = new LinkedList<>();
         someCustomers.add(new Customer(new Address("MA")));
         someCustomers.add(new Customer(new Address("RI")));
@@ -20,12 +30,7 @@ public class Application6_5 {
         someCustomers.add(new Customer(new Address("NO")));
         someCustomers.add(new Customer(new Address("NO")));
         someCustomers.add(new Customer(new Address("NO")));
-
-        long numberOfNewEngland =
-                someCustomers.stream()
-                        .filter(customer -> isNewEngland(customer.getAddress().getState()))
-                        .count();
-        System.out.println("numberOfNewEngland = " + numberOfNewEngland);
+        return someCustomers;
     }
 
     private static boolean isNewEngland(String stateCode) {

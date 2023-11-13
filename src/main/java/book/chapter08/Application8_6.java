@@ -3,16 +3,19 @@ package book.chapter08;
 public class Application8_6 {
     public static void main(String[] args) {
         PricingPlan pricingPlan = retrievePricingPlan();
-        Order order = retrieveOrder();
         int baseCharge = pricingPlan.base;
-        int charge;
         int chargePerUnit = pricingPlan.unit;
+
+        Order order = retrieveOrder();
         int units = order.units;
-        int discount;
-        charge = baseCharge + units * chargePerUnit;
         int discountableUnits = Math.max(units - pricingPlan.discountThreshold, 0);
+
+        int discount;
         discount = (int) (discountableUnits * pricingPlan.discountFactor);
         if (order.isRepeat) discount += 20;
+
+        int charge;
+        charge = baseCharge + units * chargePerUnit;
         charge = charge - discount;
         chargeOrder(charge);
     }

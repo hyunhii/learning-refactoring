@@ -4,9 +4,7 @@ public class Application12_1 {
     public static void main(String[] args) {}
 }
 
-class Party {}
-
-class Employee extends Party {
+class Party {
     int monthlyCost;
 
     public int annualCost() {
@@ -14,10 +12,6 @@ class Employee extends Party {
     }
 }
 
-class Department extends Party {
-    int monthlyCost;
+class Employee extends Party {}
 
-    public int annualCost() {
-        return monthlyCost * 12;
-    }
-}
+class Department extends Party {}

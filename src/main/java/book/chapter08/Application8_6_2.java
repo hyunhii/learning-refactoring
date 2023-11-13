@@ -11,10 +11,9 @@ public class Application8_6_2 {
 
         if(availableResources.size() == 0) {
             result = "create result";
-            allocatedResources.add(result);
         } else {
             result = availableResources.remove();
-            allocatedResources.add(result);
         }
+        allocatedResources.add(result);
     }
 }

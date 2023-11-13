@@ -26,15 +26,9 @@ public class Application6_1 {
 
 class FinancialObligation {
     public void printOwing(Invoice invoice) {
-
         printBanner();
-
-        int outstanding = calculateOutstanding(invoice);
-
         recordDueDate(invoice);
-
-        printDetails(invoice, outstanding);
-
+        printDetails(invoice, calculateOutstanding(invoice));
     }
 
     private int calculateOutstanding(Invoice invoice) {

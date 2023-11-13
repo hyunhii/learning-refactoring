@@ -11,8 +11,7 @@ import java.util.Set;
 
 public class OrderManagement {
 
-    private Set<String> buyers = new HashSet<>();
-    private Set<String> orderNumbers = new HashSet<>();
+    private final Set<UserOrder> userOrders = new HashSet<>();
 
     /**
      * 주어진 사용자 주문 리스트에 대해 각 사용자 이름과 주문번호를 읽어온다.
@@ -21,24 +20,18 @@ public class OrderManagement {
         List<UserInfo> orders = getUserOrderFromAPI().getUserInfos();
 
         for (UserInfo order : orders) {
-            buyers.add(order.getUsername());
-            orderNumbers.add(order.getOrderNumber());
+            userOrders.add(new UserOrder(order.getUsername(), order.getOrderNumber()));
         }
     }
 
-    public Set<String> getBuyers() {
-        return buyers;
-    }
-
-    public Set<String> getOrderNumbers() {
-        return orderNumbers;
+    public Set<UserOrder> getUserOrders() {
+        return userOrders;
     }
 
     public static void main(String[] args) {
         OrderManagement orderManagement = new OrderManagement();
         orderManagement.loadOrders();
-        orderManagement.getBuyers().forEach(System.out::println);
-        orderManagement.getOrderNumbers().forEach(System.out::println);
+        orderManagement.getUserOrders().forEach(System.out::println);
     }
 
     private static UserInfos getUserOrderFromAPI() {

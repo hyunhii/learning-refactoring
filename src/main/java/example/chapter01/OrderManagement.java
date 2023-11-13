@@ -16,9 +16,10 @@ public class OrderManagement {
 
     /**
      * 주어진 사용자 주문 리스트에 대해 각 사용자 이름과 주문번호를 읽어온다.
-     * @param userInfos
      */
-    private void loadOrders(List<UserInfo> userInfos) {
+    private void loadOrders() {
+        List<UserInfo> userInfos = getUserOrderFromAPI().getUserInfos();
+
         for (UserInfo userInfo : userInfos) {
             usernames.add(userInfo.getUsername());
             orderNumbers.add(userInfo.getOrderNumber());
@@ -35,7 +36,7 @@ public class OrderManagement {
 
     public static void main(String[] args) {
         OrderManagement orderManagement = new OrderManagement();
-        orderManagement.loadOrders(getUserOrderFromAPI().getUserInfos());
+        orderManagement.loadOrders();
         orderManagement.getUsernames().forEach(name -> System.out.println(name));
         orderManagement.getOrderNumbers().forEach(orderNumber -> System.out.println(orderNumber));
     }

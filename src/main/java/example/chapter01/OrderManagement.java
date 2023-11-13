@@ -18,11 +18,11 @@ public class OrderManagement {
      * 주어진 사용자 주문 리스트에 대해 각 사용자 이름과 주문번호를 읽어온다.
      */
     private void loadOrders() {
-        List<UserInfo> userInfos = getUserOrderFromAPI().getUserInfos();
+        List<UserInfo> orders = getUserOrderFromAPI().getUserInfos();
 
-        for (UserInfo userInfo : userInfos) {
-            usernames.add(userInfo.getUsername());
-            orderNumbers.add(userInfo.getOrderNumber());
+        for (UserInfo order : orders) {
+            usernames.add(order.getUsername());
+            orderNumbers.add(order.getOrderNumber());
         }
     }
 

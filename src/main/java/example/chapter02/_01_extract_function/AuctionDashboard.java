@@ -9,10 +9,7 @@ import java.util.List;
 public class AuctionDashboard {
     private void printOngoingItems() {
         Auction auction = getAuction("Seoul");
-
-        // Get ongoing auction items.
-        List<String> ongoingItems = new ArrayList<>();
-        auction.getItems().forEach(item -> ongoingItems.add(item.getName()));
+        List<String> ongoingItems = getItems(auction);
 
         // Print ongoing items.
         ongoingItems.forEach(System.out::println);
@@ -20,13 +17,16 @@ public class AuctionDashboard {
 
     private void printInProgressItems(String region) {
         Auction auction = getAuction(region);
-
-        // Get ongoing auction items.
-        List<String> inProgressItems = new ArrayList<>();
-        auction.getItems().forEach(item -> inProgressItems.add(item.getName()));
+        List<String> inProgressItems = getItems(auction);
 
         // Print ongoing items.
         inProgressItems.forEach(System.out::println);
+    }
+
+    private static List<String> getItems(Auction auction) {
+        List<String> items = new ArrayList<>();
+        auction.getItems().forEach(item -> items.add(item.getName()));
+        return items;
     }
 
     private static Auction getAuction(String region) {

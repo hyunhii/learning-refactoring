@@ -19,7 +19,11 @@ public class AuctionDashboard {
 @AllArgsConstructor
 class OngoingDashboard extends AuctionDashboard {
     public void printOngoingItems() {
-        AuctionHub auctionHub = AuctionHub.connect("Seoul");
+        printItems("Seoul");
+    }
+
+    public void printItems(String region) {
+        AuctionHub auctionHub = AuctionHub.connect(region);
         Auction auction = auctionHub.getAuction();
 
         List<String> ongoingItems = new ArrayList<>();

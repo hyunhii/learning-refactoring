@@ -2,6 +2,7 @@ package book.chapter06;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -59,4 +60,11 @@ class Reading {
 class OperationPlan {
     private int temperatureFloor;
     private int temperatureCeiling;
+}
+
+@Getter
+@AllArgsConstructor
+class NumberRange {
+    private int min;
+    private int max;
 }

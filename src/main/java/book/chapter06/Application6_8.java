@@ -13,10 +13,11 @@ public class Application6_8 {
     public static void main(String[] args) {
         Station station = createSampleStation();
         OperationPlan operationPlan = new OperationPlan(50, 55);
+        NumberRange range = new NumberRange(operationPlan.getTemperatureFloor(), operationPlan.getTemperatureCeiling());
 
         List<Reading> alerts =
                 readingsOutsideRange(
-                        station, operationPlan.getTemperatureFloor(), operationPlan.getTemperatureCeiling(), null);
+                        station, operationPlan.getTemperatureFloor(), operationPlan.getTemperatureCeiling(), range);
 
         System.out.println("alerts = " + alerts);
     }

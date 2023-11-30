@@ -22,7 +22,7 @@ public class Application6_8 {
 
     public static List<Reading> readingsOutsideRange(Station station, NumberRange range) {
         return station.getReadings().stream()
-                .filter(r -> r.getTemp() < range.getMin() || r.getTemp() > range.getMax())
+                .filter(r -> !range.contains(r.getTemp()))
                 .collect(Collectors.toList());
     }
 
@@ -66,4 +66,8 @@ class OperationPlan {
 class NumberRange {
     private int min;
     private int max;
+
+    public boolean contains(int value) {
+        return value >= min && value <= max;
+    }
 }

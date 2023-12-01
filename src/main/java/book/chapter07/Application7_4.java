@@ -21,8 +21,11 @@ class Order {
     private int quantity;
 
     public double getPrice() {
-        double discountFactor = getDiscountFactor();
-        return getBasePrice() * discountFactor;
+        return getBasePrice() * getDiscountFactor();
+    }
+
+    private int getBasePrice() {
+        return quantity * item.getPrice();
     }
 
     private double getDiscountFactor() {
@@ -32,10 +35,6 @@ class Order {
             discountFactor -= 0.03;
         }
         return discountFactor;
-    }
-
-    private int getBasePrice() {
-        return quantity * item.getPrice();
     }
 }
 

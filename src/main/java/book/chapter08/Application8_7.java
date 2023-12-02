@@ -13,10 +13,13 @@ public class Application8_7 {
         int youngest = persons.isEmpty() ? Integer.MAX_VALUE : persons.get(0).getAge();
         int totalSalary = 0;
         for (Person person : persons) {
+            totalSalary += person.getSalary();
+        }
+
+        for (Person person : persons) {
             if (person.getAge() < youngest) {
                 youngest = person.getAge();
             }
-            totalSalary += person.getSalary();
         }
 
         System.out.println("youngest = " + youngest);

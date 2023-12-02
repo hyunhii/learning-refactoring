@@ -10,12 +10,12 @@ public class Application8_7 {
     public static void main(String[] args) {
         List<Person> persons = getPersonList();
 
-        int youngest = persons.isEmpty() ? Integer.MAX_VALUE : persons.get(0).getAge();
         int totalSalary = 0;
         for (Person person : persons) {
             totalSalary += person.getSalary();
         }
 
+        int youngest = persons.isEmpty() ? Integer.MAX_VALUE : persons.get(0).getAge();
         for (Person person : persons) {
             if (person.getAge() < youngest) {
                 youngest = person.getAge();

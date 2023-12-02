@@ -10,9 +10,7 @@ public class Application8_7 {
     public static void main(String[] args) {
         List<Person> persons = getPersonList();
 
-        int youngest = getYoungest(persons);
-
-        System.out.println("youngest = " + youngest);
+        System.out.println("youngest = " + getYoungest(persons));
         System.out.println("totalSalary = " + getTotalSalary(persons));
     }
 

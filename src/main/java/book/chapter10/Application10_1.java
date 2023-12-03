@@ -17,7 +17,7 @@ public class Application10_1 {
 
         double charge;
         if (summer(paymentDate)) {
-            charge = totalAmount * plan.getSummerRate();
+            charge = summerCharge(totalAmount);
         } else {
             charge = totalAmount * plan.getRegularRate() + plan.getRegularServiceCharge();
         }
@@ -27,6 +27,10 @@ public class Application10_1 {
 
     private static boolean summer(LocalDate paymentDate) {
         return !paymentDate.isBefore(plan.getSummerStart()) && !paymentDate.isAfter(plan.getSummerEnd());
+    }
+
+    private static double summerCharge(int totalAmount) {
+        return totalAmount * plan.getSummerRate();
     }
 }
 

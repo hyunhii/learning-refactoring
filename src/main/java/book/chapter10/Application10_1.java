@@ -19,7 +19,7 @@ public class Application10_1 {
         if (summer(paymentDate)) {
             charge = summerCharge(totalAmount);
         } else {
-            charge = totalAmount * plan.getRegularRate() + plan.getRegularServiceCharge();
+            charge = regularCharge(totalAmount);
         }
 
         System.out.println("charge = " + charge);
@@ -31,6 +31,10 @@ public class Application10_1 {
 
     private static double summerCharge(int totalAmount) {
         return totalAmount * plan.getSummerRate();
+    }
+
+    private static double regularCharge(int totalAmount) {
+        return totalAmount * plan.getRegularRate() + plan.getRegularServiceCharge();
     }
 }
 

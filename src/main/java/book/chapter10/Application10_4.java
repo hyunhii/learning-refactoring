@@ -20,38 +20,13 @@ public class Application10_4 {
     }
 
     public static Map<String, String> plumages(List<Bird> birds) {
-        return birds.stream().collect(Collectors.toMap(bird -> bird.type, bird -> plumage(bird)));
+        return birds.stream()
+                .collect(Collectors.toMap(bird -> bird.type, bird -> bird.plumage()));
     }
 
     public static Map<String, Integer> speeds(List<Bird> birds) {
         return birds.stream()
-                .collect(Collectors.toMap(bird -> bird.type, bird -> airSpeedVelocity(bird)));
-    }
-
-    public static String plumage(Bird bird) {
-        switch (bird.type) {
-            case "유럽 제비":
-                return "보통이다.";
-            case "아프리카 제비":
-                return bird.numberOfCoconuts > 2 ? "지쳤다." : "보통이다.";
-            case "노르웨이 파랑 앵무":
-                return bird.voltage > 100 ? "그을렸다." : "예쁘다.";
-            default:
-                return "알 수 없다.";
-        }
-    }
-
-    public static int airSpeedVelocity(Bird bird) {
-        switch (bird.type) {
-            case "유럽 제비":
-                return 35;
-            case "아프리카 제비":
-                return 40 - 2 * bird.numberOfCoconuts;
-            case "노르웨이 파랑 앵무":
-                return bird.isNailed ? 0 : 10 + bird.voltage / 10;
-            default:
-                return 0;
-        }
+                .collect(Collectors.toMap(bird -> bird.type, bird -> bird.airSpeedVelocity()));
     }
 }
 
@@ -62,4 +37,30 @@ class Bird {
     public int numberOfCoconuts;
     public int voltage;
     public boolean isNailed;
+
+    public String plumage() {
+        switch (type) {
+            case "유럽 제비":
+                return "보통이다.";
+            case "아프리카 제비":
+                return numberOfCoconuts > 2 ? "지쳤다." : "보통이다.";
+            case "노르웨이 파랑 앵무":
+                return voltage > 100 ? "그을렸다." : "예쁘다.";
+            default:
+                return "알 수 없다.";
+        }
+    }
+
+    public int airSpeedVelocity() {
+        switch (type) {
+            case "유럽 제비":
+                return 35;
+            case "아프리카 제비":
+                return 40 - 2 * numberOfCoconuts;
+            case "노르웨이 파랑 앵무":
+                return isNailed ? 0 : 10 + voltage / 10;
+            default:
+                return 0;
+        }
+    }
 }

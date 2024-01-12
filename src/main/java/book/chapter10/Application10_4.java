@@ -38,6 +38,13 @@ class Bird {
     public int voltage;
     public boolean isNailed;
 
+    public Bird(Bird bird) {
+        this.type = bird.type;
+        this.numberOfCoconuts = bird.numberOfCoconuts;
+        this.voltage = bird.voltage;
+        this.isNailed = bird.isNailed;
+    }
+
     public String plumage() {
         switch (type) {
             case "유럽 제비":
@@ -62,5 +69,23 @@ class Bird {
             default:
                 return 0;
         }
+    }
+}
+
+class EuropeanSwallow extends Bird {
+    public EuropeanSwallow(Bird bird) {
+        super(bird);
+    }
+}
+
+class AfricanSwallow extends Bird {
+    public AfricanSwallow(Bird bird) {
+        super(bird);
+    }
+}
+
+class NorwegianBlueParrot extends Bird {
+    public NorwegianBlueParrot(Bird bird) {
+        super(bird);
     }
 }

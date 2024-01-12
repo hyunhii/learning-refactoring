@@ -65,7 +65,7 @@ class Bird {
             case "유럽 제비":
                 return null;
             case "아프리카 제비":
-                return numberOfCoconuts > 2 ? "지쳤다." : "보통이다.";
+                return null;
             case "노르웨이 파랑 앵무":
                 return voltage > 100 ? "그을렸다." : "예쁘다.";
             default:
@@ -101,6 +101,11 @@ class EuropeanSwallow extends Bird {
 class AfricanSwallow extends Bird {
     public AfricanSwallow(Bird bird) {
         super(bird);
+    }
+
+    @Override
+    public String plumage() {
+        return numberOfCoconuts > 2 ? "지쳤다." : "보통이다.";
     }
 }
 

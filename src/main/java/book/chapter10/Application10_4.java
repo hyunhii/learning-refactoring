@@ -34,14 +34,14 @@ public class Application10_4 {
 
     public static Map<String, String> plumages(List<Bird> birds) {
         return birds.stream()
-                .map(bird -> createBird(bird))
-                .collect(Collectors.toMap(bird -> bird.type, bird -> bird.plumage()));
+                .map(Application10_4::createBird)
+                .collect(Collectors.toMap(bird -> bird.type, Bird::plumage));
     }
 
     public static Map<String, Integer> speeds(List<Bird> birds) {
         return birds.stream()
-                .map(bird -> createBird(bird))
-                .collect(Collectors.toMap(bird -> bird.type, bird -> bird.airSpeedVelocity()));
+                .map(Application10_4::createBird)
+                .collect(Collectors.toMap(bird -> bird.type, Bird::airSpeedVelocity));
     }
 }
 

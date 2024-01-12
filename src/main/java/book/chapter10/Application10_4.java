@@ -63,7 +63,7 @@ class Bird {
     public String plumage() {
         switch (type) {
             case "유럽 제비":
-                return "보통이다.";
+                return null;
             case "아프리카 제비":
                 return numberOfCoconuts > 2 ? "지쳤다." : "보통이다.";
             case "노르웨이 파랑 앵무":
@@ -90,6 +90,11 @@ class Bird {
 class EuropeanSwallow extends Bird {
     public EuropeanSwallow(Bird bird) {
         super(bird);
+    }
+
+    @Override
+    public String plumage() {
+        return "보통이다.";
     }
 }
 

@@ -15,6 +15,19 @@ public class Application10_4 {
         System.out.println("speeds(birds) = " + speeds(birds));
     }
 
+    private static Bird createBird(Bird bird) {
+        switch (bird.type) {
+            case "유럽 제비":
+                return new EuropeanSwallow(bird);
+            case "아프리카 제비":
+                return new AfricanSwallow(bird);
+            case "노르웨이 파랑 앵무":
+                return new NorwegianBlueParrot(bird);
+            default:
+                return new Bird(bird);
+        }
+    }
+
     private static List<Bird> createSampleBirds() {
         return List.of(new Bird("유럽 제비"), new Bird("아프리카 제비"), new Bird("노르웨이 파랑 앵무"), new Bird("없는종"));
     }
